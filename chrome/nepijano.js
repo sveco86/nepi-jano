@@ -1,17 +1,11 @@
-/**
- * @fileOverview Nepi Jano Google Chrome extension
- * @author Miroslav Magda, http://blog.ejci.net
- * @version 0.10.0
- */
-
 (function() {
 	/**
-	 * some utils
+	 * Some utils
 	 */
 	var utils = {};
 
 	/**
-	 * Get parameter from url (if exists)
+	 * Get parameter from URL (if exists)
 	 */
 	utils.urlParam = function(name, url) {
 		url = (url) ? url : window.location.href;
@@ -28,7 +22,7 @@
 	};
 
 	/**
-	 * Remove elemtns with selector from document
+	 * Remove elements from document using selector
 	 */
 	utils.removeSelector = function(doc, selector) {
 		var elements = doc.querySelectorAll(selector);
@@ -40,7 +34,7 @@
 	};
 
 	/**
-	 * Fix urls in anchors
+	 * Fix URLs in anchors
 	 */
 	utils.fixAnchors = function(doc) {
 		var elements = doc.querySelectorAll('a');
@@ -59,6 +53,7 @@
 		}
 		return doc;
 	};
+
 	/**
 	 * Fix video tags
 	 */
@@ -72,83 +67,52 @@
 		}
 		return doc;
 	};
+
 	/**
-	 * Get article id from url
+	 * Get article ID from URL
 	 */
 	utils.articleId = function() {
-		var articleId = document.location.pathname.split('/')[2];
-		if (parseInt(articleId, 10) == articleId) {
-			return articleId;
-		} else {
-			return false;
-		}
-		return false;
+		return document.location.pathname.split('/')[2];
 	};
 
 	/**
-	 * Get mobile version article
+	 * Detect Piano article
 	 */
-	utils.getArticle = function(cb) {
-		var articleId = utils.articleId();
-		request = new XMLHttpRequest();
-		request.open('GET', 'http://s.sme.sk/export/ma/?c=' + articleId, true);
+	utils.isPiano = function() {
+		return document.querySelector('.sme_piano_art_promo');
+	};
+
+	/**
+	 * Get mobile version of the article
+	 */
+	utils.getArticle = function(url) {
+		var request = new XMLHttpRequest();
+		request.open('GET', url, true);
 		request.onload = function() {
-			if (request.status >= 200 && request.status < 400) {
-				//				try {
-				var doc = (new DOMParser()).parseFromString(request.responseText, "text/html");
+			if (request.status == 200) {
+				var doc = (new DOMParser()).parseFromString(request.responseText, 'text/html');
 				doc = utils.removeSelector(doc, 'script');
 				doc = utils.removeSelector(doc, 'link');
 				doc = utils.removeSelector(doc, 'style');
-				doc = utils.removeSelector(doc, '.button-bar');
 				doc = utils.fixAnchors(doc);
 				doc = utils.fixVideos(doc);
-// check for article tag from new format and if it exists send it back
-                		if(doc.getElementsByTagName("article")[0]){
-                    			cb(doc.getElementsByTagName("article")[0]);
-// if article tag is not found continue "the old way"
-		                } else {
-                	    		cb(doc.querySelector('.articlewrap'));    
-                		}
-				//				} catch(e) {
 
-				//				}
+				/* articles */
+				var html;
+				if (html = document.querySelector('#article-box #itext_content')) {
+					doc = utils.removeSelector(doc, '.button-bar');
+					html.innerHTML = doc.querySelector('.articlewrap').innerHTML;
+				}
+				/* tech articles */
+				else if (html = document.getElementsByTagName('article')[0]) {
+					html.innerHTML = doc.getElementsByTagName('article')[0].innerHTML + doc.querySelector('.button-bar').innerHTML;
+				}
 			}
 		};
 		request.send();
 	};
 
-	/**
-	 * Get article id from url
-	 */
-	utils.isPiano = function() {
-		var ret = false;
-		var selectors = [];
-		selectors.push('#article-box #itext_content .art-perex-piano');
-		selectors.push('#article-box #itext_content .art-nexttext-piano');
-// check for new format article containers
-        	selectors.push('.piano-teaser-wrapper');
-        	selectors.push('#pianoSmePromoBox');
-        	selectors.push('.sme_piano_art_promo');        	
-		selectors.push('#article-box div[id^=pianoArticle]');
-		for (var i = 0, l = selectors.length; i < l; i++) {
-			ret = ret || (document.querySelectorAll(selectors[i]).length != 0);
-		}
-		return ret;
-	};
-
-	if (/sme.sk\/c\//i.test(document.location)) {
-		if (utils.isPiano()) {
-			utils.getArticle(function(html) {
-                		if(html){
-// check if the old format of the page is used and replace the content
-                    			if(document.querySelector('#article-box #itext_content')){
-                        			document.querySelector('#article-box #itext_content').innerHTML = html.innerHTML;
-// if not look for the new container
-                      			} else if(document.getElementsByTagName('article')){
-                        			document.getElementsByTagName('article')[0].innerHTML = html.innerHTML;
-                 			}
-                		}
-			});
-		}
+	if (/\.sme\.sk\/c\/\d+\/.*/.test(document.location) && utils.isPiano()) {
+		utils.getArticle('http://s.sme.sk/export/ma/?c=' + utils.articleId());
 	}
 })();

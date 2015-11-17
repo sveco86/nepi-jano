@@ -3,17 +3,17 @@
 <plist version="1.0">
 <dict>
 	<key>Author</key>
-	<string>Miroslav Magda, Jakub Zitny</string>
+	<string>Miroslav Magda, Jakub Zitny, Viliam Pucik</string>
 	<key>Builder Version</key>
-	<string>9537.85.10.17.1</string>
+	<string>11601.1.56</string>
 	<key>CFBundleDisplayName</key>
 	<string>Nepi Jano!</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.ejci.nepijano</string>
+	<string>com.viliampucik.nepijano</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.10.0</string>
+	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>Chrome</key>
@@ -32,9 +32,9 @@
 		</dict>
 	</dict>
 	<key>Description</key>
-	<string>This extension allows access to paid content on sme.sk.</string>
+	<string>Read paid content on sme.sk</string>
 	<key>DeveloperIdentifier</key>
-	<string>9XH4QDTV5W</string>
+	<string>0000000000</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
@@ -45,11 +45,13 @@
 			<array>
 				<string>*.sme.sk</string>
 			</array>
+			<key>Include Secure Pages</key>
+			<false/>
 			<key>Level</key>
 			<string>Some</string>
 		</dict>
 	</dict>
 	<key>Website</key>
-	<string>https://github.com/ejci/nepi-jano/</string>
+	<string>https://github.com/viliampucik/nepi-jano/</string>
 </dict>
 </plist>

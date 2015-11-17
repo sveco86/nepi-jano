@@ -1,11 +1,11 @@
 {
   "title": "Nepi Jano!",
   "name": "nepi-jano",
-  "version": "0.11.0",
+  "version": "1.0.0",
   "description": "Read paid content on www.sme.sk",
   "main": "index.js",
   "author": "Miroslav Magda, Viliam Pucik",
-  "homepage": "https://github.com/ejci/nepi-jano",
+  "homepage": "https://github.com/viliampucik/nepi-jano",
   "engines": {
     "firefox": ">=38.0a1",
     "fennec": ">=38.0a1"

@@ -3,29 +3,22 @@
 	<head>
 		<script type="text/javascript">
 			function doXhr(url, event) {
-				console.log('url', url);
 				var xhr = new XMLHttpRequest();
-				xhr.onreadystatechange = handleStateChange;
 				xhr.open("GET", url, true);
-				xhr.send();
-				function handleStateChange() {
-					if (xhr.readyState === 4) {
-						var data = xhr.responseText;
-						event.target.page.dispatchMessage("article", data);
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState === 4 && xhr.status === 200) {
+						event.target.page.dispatchMessage("article", xhr.responseText);
 					}
 				}
-
+				xhr.send();
 			}
 
-			function respondToMessage(ev) {
-				if (ev.name === "doXhr") {
-					var url = ev.message;
-					doXhr(url, ev);
+			safari.application.addEventListener("message", function(event) {
+				if (event.name === "doXhr") {
+					var url = event.message;
+					doXhr(url, event);
 				}
-			}
-
-
-			safari.application.addEventListener("message", respondToMessage, false);
+			}, false);
 		</script>
 	</head>
 	<body></body>

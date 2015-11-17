@@ -1,17 +1,10 @@
 /**
- * @fileOverview Nepi Jano Firefox extension
- * @author Miroslav Magda, http://blog.ejci.net
- * @author Viliam Pucik, http://viliampucik.blogspot.com/
- * @version 0.11.0
- */
-
-/**
- * some utils
+ * Some utils
  */
 var utils = {};
 
 /**
- * Get parameter from url (if exists)
+ * Get parameter from URL (if exists)
  */
 utils.urlParam = function(name, url) {
 	url = (url) ? url : window.location.href;
@@ -28,7 +21,7 @@ utils.urlParam = function(name, url) {
 };
 
 /**
- * Remove elements with selector from document
+ * Remove elements from document using selector
  */
 utils.removeSelector = function(doc, selector) {
 	var elements = doc.querySelectorAll(selector);
@@ -40,7 +33,7 @@ utils.removeSelector = function(doc, selector) {
 };
 
 /**
- * Fix urls in anchors
+ * Fix URLs in anchors
  */
 utils.fixAnchors = function(doc) {
 	var elements = doc.querySelectorAll('a');
@@ -59,6 +52,7 @@ utils.fixAnchors = function(doc) {
 	}
 	return doc;
 };
+
 /**
  * Fix video tags
  */
@@ -72,8 +66,9 @@ utils.fixVideos = function(doc) {
 	}
 	return doc;
 };
+
 /**
- * Get article id from url
+ * Get article ID from URL
  */
 utils.articleId = function() {
 	return document.location.pathname.split('/')[2];
@@ -86,32 +81,26 @@ utils.isPiano = function() {
 	return document.querySelector('.sme_piano_art_promo');
 };
 
-if (/\.sme\.sk\/c\/\d+\/.*/.test(document.location)) {
-	if (utils.isPiano()) {
-		self.port.emit('loadPage', 'http://s.sme.sk/export/ma/?c=' + utils.articleId());
-	}
+if (/\.sme\.sk\/c\/\d+\/.*/.test(document.location) && utils.isPiano()) {
+	self.port.emit('loadPage', 'http://s.sme.sk/export/ma/?c=' + utils.articleId());
 }
 
 self.port.on("rewritePage", function(responseText) {
-	responseText = responseText.replace(/<script/g, '<!--script');
-	responseText = responseText.replace(/<\/script/g, '</script--');
-
-	var doc;
-	/* articles */
-	if (doc = document.querySelector('#article-box #itext_content')) {
-		doc.innerHTML = responseText;
-		doc.innerHTML = doc.querySelector('.articlewrap').innerHTML;
-		doc = utils.removeSelector(doc, '.button-bar');
-	}
-	/* tech articles */
-	else if (doc = document.querySelector('article')) {
-		doc.innerHTML = responseText;
-		doc.innerHTML = doc.querySelector('article').innerHTML + doc.querySelector('.button-bar').innerHTML;
-	}
-	
+	var doc = (new DOMParser()).parseFromString(responseText, 'text/html');
 	doc = utils.removeSelector(doc, 'script');
 	doc = utils.removeSelector(doc, 'link');
 	doc = utils.removeSelector(doc, 'style');
 	doc = utils.fixAnchors(doc);
 	doc = utils.fixVideos(doc);
+
+	/* articles */
+	var html;
+	if (html = document.querySelector('#article-box #itext_content')) {
+		doc = utils.removeSelector(doc, '.button-bar');
+		html.innerHTML = doc.querySelector('.articlewrap').innerHTML;
+	}
+	/* tech articles */
+	else if (html = document.getElementsByTagName('article')[0]) {
+		html.innerHTML = doc.getElementsByTagName('article')[0].innerHTML + doc.querySelector('.button-bar').innerHTML;
+	}
 });

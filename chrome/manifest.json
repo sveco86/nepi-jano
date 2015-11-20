@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Nepi Jano!",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Read paid content on www.sme.sk",
 	"author": "Miroslav Magda, Viliam Pucik",
 	"permissions": ["webRequest", "webRequestBlocking", "*://*.sme.sk/c/*"],
@@ -12,6 +12,10 @@
 		{
 			"js": ["nepijano.js"],
 			"matches": ["*://*.sme.sk/c/*"]
+		},
+		{
+			"js": ["video.js"],
+			"matches": ["http://tv.sme.sk/v*"]
 		}
 	],
 	"homepage_url": "https://github.com/viliampucik/nepi-jano",

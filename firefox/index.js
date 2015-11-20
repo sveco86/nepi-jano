@@ -21,3 +21,10 @@ pageMod({
 		});
 	}
 });
+
+var videoMod = require("sdk/page-mod").PageMod;
+
+videoMod({
+	include : /http:\/\/tv\.sme\.sk\/v(hd)?\/\d+\/.*/,
+	contentScriptFile : data.url("video.js")
+});

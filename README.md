@@ -38,7 +38,7 @@ All code is open source and dual licensed under GPL and MIT. Check the individua
 
 # Change log
 
-#### 1.0.0
+#### 1.1.0
 
 * Added support for Piano videos
 

@@ -17,6 +17,10 @@ This fork is a continuation of the original extension developed by [Miroslav Mag
 
 ## Mozilla Firefox
 
+* First of all enable installation of unsigned extensions as described in [Add-ons/Extension Signing](https://wiki.mozilla.org/Add-ons/Extension_Signing)
+  * Type *about:config* into the URL bar in Firefox
+  * In the Search box type *xpinstall.signatures.required*
+  * Double-click the preference, or right-click and selected "Toggle", to set it to *false*
 * [Download Firefox add-on](https://github.com/viliampucik/nepi-jano/raw/master/releases/nepi-jano-1.1.1.xpi)
 * Choose *Open File* (Ctrl+O) and select the downloaded *.xpi*  file
 * Press *Install*

@@ -11,9 +11,8 @@ This fork is a continuation of the original extension developed by [Miroslav Mag
 
 ## Google Chrome
 
-* [Download Chrome extension](https://github.com/viliampucik/nepi-jano/raw/master/releases/nepi-jano-1.1.0.crx)
-* Type *chrome://extensions* to open extensions tab
-* Drag and drop the downloaded *.crx* file to extensions tab
+* [Install Chrome extension from official Chrome Store web](https://chrome.google.com/webstore/detail/nepi-jano/dmiebaglkdeebobffhbomapifjjjjakj)
+* Press *Add extension*
 
 ## Mozilla Firefox
 
@@ -39,6 +38,7 @@ All code is open source and dual licensed under GPL and MIT. Check the individua
 ##### Contributors
 * [Jakub Zitny](https://github.com/jakubzitny)
 * [Daniel Husar](https://github.com/danielhusar)
+* Jozef Giusseppe
 * and others (Please let me know to add your name here)
 
 # Change log

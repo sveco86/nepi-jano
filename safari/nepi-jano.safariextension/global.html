@@ -2,12 +2,12 @@
 <html>
 	<head>
 		<script type="text/javascript">
-			function doXhr(url, event) {
+			function doXhr(name, url, event) {
 				var xhr = new XMLHttpRequest();
 				xhr.open("GET", url, true);
 				xhr.onreadystatechange = function() {
 					if (xhr.readyState === 4 && xhr.status === 200) {
-						event.target.page.dispatchMessage("article", xhr.responseText);
+						event.target.page.dispatchMessage(name, xhr.responseText);
 					}
 				}
 				xhr.send();
@@ -15,8 +15,9 @@
 
 			safari.application.addEventListener("message", function(event) {
 				if (event.name === "doXhr") {
-					var url = event.message;
-					doXhr(url, event);
+					var name = event.message[0];
+					var url  = event.message[1];
+					doXhr(name, url, event);
 				}
 			}, false);
 		</script>

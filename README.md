@@ -1,4 +1,4 @@
-Nepi Jano! 1.2.0
+Nepi Jano! 1.2.1
 ============
 
 Nepi Jano! is an extension for Google Chrome, Mozilla Firefox and Pale Moon to read paid articles on [www.sme.sk](http://www.sme.sk) for free. To use it just download and install the extension for your browser and visit a paid article on [www.sme.sk](http://www.sme.sk). Immediately or after couple of seconds you should see the full article.
@@ -12,18 +12,20 @@ This fork is a continuation of the original extension developed by [Miroslav Mag
 ## Google Chrome
 
 * [Install Chrome extension from official Chrome Store web](https://chrome.google.com/webstore/detail/nepi-jano/dmiebaglkdeebobffhbomapifjjjjakj)
-* Press *Add extension*
+* Or [download Chrome extension from this site](https://github.com/viliampucik/nepi-jano/raw/master/releases/nepi-jano-1.2.1.crx)
+* Type *chrome://extensions* to open extensions tab
+* Drag and drop the downloaded *.crx* file to extensions tab
 
 ## Mozilla Firefox
 
-* [Install Firefox add-on from official Mozilla Add-ons web](https://addons.mozilla.org/en-US/firefox/addon/nepi-jano/) 
-* Press *Install*
+* [Install Firefox add-on from official Mozilla Add-ons web](https://addons.mozilla.org/en-US/firefox/addon/nepi-jano/)
+* Or [download Firefox add-on from this site](https://github.com/viliampucik/nepi-jano/raw/master/releases/nepi-jano-1.2.1.xpi)
+* Choose *Open File* (Ctrl+O) and select the downloaded *.xpi*  file
 
 ## Pale Moon
 
-* [Download Pale Moon add-on](https://github.com/viliampucik/nepi-jano/raw/master/releases/nepi-jano-1.2.0.palemoon.xpi)
+* [Download Pale Moon add-on from this site](https://github.com/viliampucik/nepi-jano/raw/master/releases/nepi-jano-1.2.1.palemoon.xpi)
 * Choose *Open File* (Ctrl+O) and select the downloaded *.xpi*  file
-* Press *Install*
 
 # License
 
@@ -42,6 +44,10 @@ All code is open source and dual licensed under GPL and MIT. Check the individua
 * and others (Please let me know to add your name here)
 
 # Change log
+
+#### 1.2.1
+
+* Fixed new article format
 
 #### 1.2.0
 

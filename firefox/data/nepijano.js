@@ -78,7 +78,7 @@ utils.articleId = function() {
  * Detect Piano article
  */
 utils.isPiano = function() {
-	return document.querySelector('.sme_piano_art_promo');
+	return document.querySelector('.sme_piano_art_promo') || document.querySelector('.js-piano-teaser-standard');
 };
 
 if (/\.sme\.sk\/c\/\d+\/.*/.test(document.location) && utils.isPiano()) {
@@ -101,6 +101,13 @@ self.port.on("rewritePage", function(responseText) {
 	}
 	/* tech articles */
 	else if (html = document.getElementsByTagName('article')[0]) {
-		html.innerHTML = doc.getElementsByTagName('article')[0].innerHTML + doc.querySelector('.button-bar').innerHTML;
+		if (doc.querySelector('.articlewrap')) {
+			doc = utils.removeSelector(doc, 'p:first-of-type');
+			doc = utils.removeSelector(doc, '.button-bar');
+			html.innerHTML = doc.querySelector('.articlewrap').innerHTML;
+		}
+		else {
+			html.innerHTML = doc.getElementsByTagName('article')[0].innerHTML + doc.querySelector('.button-bar').innerHTML;
+		}
 	}
 });

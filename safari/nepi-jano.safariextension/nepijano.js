@@ -105,6 +105,9 @@ else if (/tv\.sme\.sk\/v(hd)?\/\d+\/.*/.test(document.location)) {
 		safari.self.tab.dispatchMessage('doXhr', ['video', 'http://www.sme.sk/storm/mmdata_get.asp?id=' + utils.articleId() + '&hd1=' + utils.isHD()]);
 	}
 }
+else if (/s\.sme\.sk\/export\/ma\/\?ch=\d+.*/.test(document.location)) {
+	window.location = document.querySelector('web_url').innerHTML;
+}
 
 safari.self.addEventListener('message', function(event) {
 	if (event.name === 'article') {

@@ -42,3 +42,9 @@ videoMod({
 		});
 	}
 });
+
+var xmlMod = require("sdk/page-mod").PageMod;
+xmlMod({
+	include : /http:\/\/s\.sme\.sk\/export\/ma\/\?ch=\d+.*/,
+	contentScript : 'window.location = document.querySelector("web_url").innerHTML;'
+});

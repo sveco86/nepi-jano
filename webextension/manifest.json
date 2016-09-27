@@ -1,25 +1,17 @@
 {
 	"manifest_version": 2,
 	"name": "Nepi Jano!",
-	"version": "1.2.2",
+	"version": "2.0",
 	"description": "Read paid content on www.sme.sk",
-	"author": "Miroslav Magda, Viliam Pucik",
-	"permissions": ["webRequest", "webRequestBlocking", "*://*.sme.sk/c/*"],
-	"background": {
-		"scripts": ["background.js"]
-	},
+	"permissions": ["cookies", "webRequest", "*://*.sme.sk/c/*"],
 	"content_scripts": [
 		{
-			"js": ["nepijano.js"],
+			"js": ["article.js"],
 			"matches": ["*://*.sme.sk/c/*"]
 		},
 		{
 			"js": ["video.js"],
 			"matches": ["http://tv.sme.sk/v*"]
-		},
-		{
-			"js": ["xml.js"],
-			"matches": ["http://s.sme.sk/export/ma/?ch=*"]
 		}
 	],
 	"homepage_url": "https://github.com/viliampucik/nepi-jano",

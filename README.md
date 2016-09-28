@@ -1,69 +1,77 @@
-Nepi Jano! 2.0
+Nepi Jano! 2.1
 ============
 
-Nepi Jano! is an extension for Google Chrome, Mozilla Firefox and Pale Moon to read paid articles on [www.sme.sk](http://www.sme.sk) for free. To use it just download and install the extension for your browser and visit a paid article on [www.sme.sk](http://www.sme.sk). Immediately or after couple of seconds you should see the full article.
+Nepi Jano! je doplnok pre webove prehliadace Google Chrome a Mozilla Firefox umoznujuci bezplatne citanie platenych alias Piano clankov na [www.sme.sk](http://www.sme.sk). Staci si dane rozsirenie jednoducho nainstalovat z oficialnych stranok danych prehliadacov. Nasledne po otvoreni akehokolvek Piano clanku sa automaticky, v priebehu par sekund nacita jeho plna verzia.
 
-For more technical details feel free to read Miroslav Magda's blog posts [Piano and SME.sk](http://blog.ejci.net/2013/04/21/piano-and-sme-sk/) and [Paid content for free on (Slovak) news portals](http://blog.ejci.net/2013/05/19/paid-content-for-free-on-slovak-news-portals/). Noting the currently used loading mechanism is different. It loads unblocked Piano articles in their original form by loading blocked articles URLs with `piano_t=1` parameter and discarding Piano tracking cookie `pianovisitkey` which would otherwise cause redirect to the blocked version.
-
-This fork is a continuation of the original extension developed by [Miroslav Magda](https://github.com/ejci/nepi-jano).
-
-# Instalation
+# Instalacia
 
 ## Google Chrome
 
-* [Install Chrome extension from official Chrome Store web](https://chrome.google.com/webstore/detail/nepi-jano/dmiebaglkdeebobffhbomapifjjjjakj)
-* Or [download Chrome extension from this site](https://github.com/viliampucik/nepi-jano/raw/master/releases/nepi-jano-2.0.crx)
-* Type *chrome://extensions* to open extensions tab
-* Drag and drop the downloaded *.crx* file to extensions tab
+* [Rozsirenie pre Chrome sa instaluje z oficialnej stranky Chrome Store](https://chrome.google.com/webstore/detail/nepi-jano/dmiebaglkdeebobffhbomapifjjjjakj)
+* Pripadne sa da nainstalovat manualne [stiahnutim z tejto stranky](https://github.com/viliampucik/nepi-jano/raw/master/releases/nepi-jano-2.1.crx)
+* Otvorenim zalozky doplnkov kliknutim na menu, Nastavenia, Rozsirenie
+* A naslednym pretiahnutym stiahnuteho *.crx* suboru do spominanej zalozky
 
 ## Mozilla Firefox
 
-* [Install Firefox add-on from official Mozilla Add-ons web](https://addons.mozilla.org/en-US/firefox/addon/nepi-jano/)
+* [Doplnok pre Firefox sa instaluje z oficialnej stranky Mozilla doplnkov](https://addons.mozilla.org/sk/firefox/addon/nepi-jano/)
 
-# License
+# Ako funguje spristupnovanie Piano clankov
 
-All code is open source and dual licensed under GPL and MIT. Check the individual licenses for more information.
+V sucasnosti su Piano clanky spristupnovane doplnenim `piano_t=1` za koniec adresy povodneho clanku a zmazanim sledovacieho cookie suboru `pianovisitkey`, ktoreho vyskyt v prehliadaci by inak presmeroval pouzivatela na povodny, skrateny Piano clanok. Samotne Piano clanky si je mozne citat v plnom zneni aj bez pouzitie rozsirenia. Staci si otvorit prehliadac v privatnom alias inkognito mode a vlozit do neho upravenu adresu clanku obsahujucu `piano_t=1`, napriklad http://tech.sme.sk/c/20279505/bijuce-srdce-pluta-pasca-na-chlad-ktora-vytvara-ladovce.html?piano_t=1.
 
-##### Original Author
+V minulosti boli Piano clanky spristupnovane komplikovanejsim sposobom, ktory bol podrobnejsie popisany na blogu povodneho autorom Miroslav Magdu: [Piano and SME.sk](http://blog.ejci.net/2013/04/21/piano-and-sme-sk/) a [Paid content for free on (Slovak) news portals](http://blog.ejci.net/2013/05/19/paid-content-for-free-on-slovak-news-portals/).
+
+Terajsi doplnok je pokracovanim jeho povodnej prace z [Miroslav Magda](https://github.com/ejci/nepi-jano).
+
+# Licencia
+
+GPL a MIT
+
+##### Povodny autor
 * [Miroslav Magda](http://ejci.net)
 
-##### Maintainer
+##### Terajsi autor
 * [Viliam Pucik](https://github.com/viliampucik)
 
-##### Contributors
+##### Prispievatela
 * [Jakub Zitny](https://github.com/jakubzitny)
 * [Daniel Husar](https://github.com/danielhusar)
 * Jozef Giusseppe
-* and others (Please let me know to add your name here)
+* and dalsi (Poprosim dajte mi o sebe vediet, aby som vas zaradil do tohto zoznamu)
 
-# Change log
+# Zoznam zmien
+
+#### 2.1
+
+* Pouzity bezpecnejsi sposob nacitania Piano videi zaroven spristupnujuci nativnu podporu pre mobilny Firefox
 
 #### 2.0
 
-* Using improved Piano article loading method
-* Firefox add-on ported into WebExtension effectively sharing the same code as Chrome extension
-* Dropped Pale Moon support
+* Pouzity novy, cistejsi sposob nacitania Piano clankov 
+* Prepis Firefox rozsirenia do noveho WebExtensions formatu, Chrome a Firefox rozsirenia maju teraz identicky kod
+* Zrusena podpora pre Pale Moon webovy prehliadac
 
 #### 1.2.2
 
-* Fixed URLs pointing to XML documents
+* Oprava URL adries XML dokumentov
 
 #### 1.2.1
 
-* Fixed new article format
+* Oprava pre novy format clankov
 
 #### 1.2.0
 
-* Fixed Piano videos
+* Oprava Piano videi
 
 #### 1.1.1
 
-* Added support for Pale Moon
+* Pridana podpora pre Pale Moon webovy prehliadac
 
 #### 1.1.0
 
-* Added support for Piano videos
+* Pridana podpora pre Piano videa
 
 #### 1.0.0
 
-* Initial maintained released
+* Prvotne vydanie terajsieho autora

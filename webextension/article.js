@@ -14,7 +14,7 @@ utils.noPianoTag = function() {
  * Detect blocked Piano article
  */
 utils.isPianoArticle = function() {
-	return document.querySelector('.sme_piano_art_promo') || document.querySelector('.js-piano-teaser-standard');
+	return document.querySelector('.js-piano-teaser-standard');
 };
 
 /**

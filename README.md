@@ -10,7 +10,7 @@ Nepi Jano! je doplnok pre webove prehliadace Google Chrome a Mozilla Firefox umo
 * [Rozsirenie pre Chrome sa instaluje z oficialnej stranky Chrome Store](https://chrome.google.com/webstore/detail/nepi-jano/dmiebaglkdeebobffhbomapifjjjjakj).
 * Pripadne sa da nainstalovat manualne [stiahnutim z tejto stranky](https://github.com/viliampucik/nepi-jano/raw/master/releases/nepi-jano-2.1.crx),
 * otvorenim zalozky doplnkov kliknutim na menu *-> Nastavenia -> Rozsirenia*
-* a naslednym pretiahnutym stiahnuteho *.crx* suboru do spominanej zalozky.
+* a naslednym pretiahnutim stiahnuteho *.crx* suboru do spominanej zalozky.
 
 ### Mozilla Firefox
 
@@ -22,7 +22,7 @@ V sucasnosti su Piano clanky spristupnovane doplnenim `piano_t=1` za koniec adre
 
 V minulosti boli Piano clanky spristupnovane komplikovanejsim sposobom, ktory bol podrobnejsie popisany na blogu povodneho autorom Miroslav Magdu: [Piano and SME.sk](http://blog.ejci.net/2013/04/21/piano-and-sme-sk/) a [Paid content for free on (Slovak) news portals](http://blog.ejci.net/2013/05/19/paid-content-for-free-on-slovak-news-portals/).
 
-Terajsi doplnok je pokracovanim jeho povodnej prace z [Miroslav Magda](https://github.com/ejci/nepi-jano).
+Terajsi doplnok je pokracovanim jeho povodnej prace z https://github.com/ejci/nepi-jano.
 
 ## Zoznam zmien
 

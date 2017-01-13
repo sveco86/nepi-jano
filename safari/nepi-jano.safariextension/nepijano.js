@@ -38,6 +38,21 @@ utils.loadPianoArticle = function() {
 };
 
 /**
+ * Remove possible 10 second refresh delay used by the server to delay initial page loading
+ */
+utils.noRefreshDelay = function () {
+	var r = document.head.querySelector('[http-equiv=refresh]');
+	if (r) {
+		var u = r.content.match(/URL='(.*)'/);
+		if (u && u.length === 2) {
+			window.location = document.location.origin + u[1];
+			return false;
+		}
+	}
+	return true;
+}
+
+/**
  * Detect Piano video
  */
 utils.isPianoVideo = function() {
@@ -59,13 +74,13 @@ utils.isHD = function() {
 };
 
 if (/\.sme\.sk\/c\/\d+\/.*/.test(document.location)) {
-	if (utils.noPianoTag() && utils.isPianoArticle()) {
+	if (utils.noRefreshDelay() && utils.noPianoTag() && utils.isPianoArticle()) {
 		utils.removePianoCookie();
 		utils.loadPianoArticle();
 	}
 }
 else if (/tv\.sme\.sk\/v(hd)?\/\d+\/.*/.test(document.location)) {
-	if (utils.isPianoVideo()) {
+	if (utils.noRefreshDelay() && utils.isPianoVideo()) {
 		safari.self.tab.dispatchMessage('doXhr', ['video', 'http://www.sme.sk/storm/mmdata_get.asp?id=' + utils.articleId() + '&hd1=' + utils.isHD()]);
 	}
 }

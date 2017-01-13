@@ -37,7 +37,22 @@ utils.loadPianoArticle = function() {
 	window.location = uri + separator + 'piano_t=1' + hash;
 };
 
-if (utils.noPianoTag() && utils.isPianoArticle()) {
+/**
+ * Remove possible 10 second refresh delay used by the server to delay initial page loading
+ */
+utils.noRefreshDelay = function () {
+	var r = document.head.querySelector('[http-equiv=refresh]');
+	if (r) {
+		var u = r.content.match(/URL='(.*)'/);
+		if (u && u.length === 2) {
+			window.location = document.location.origin + u[1];
+			return false;
+		}
+	}
+	return true;
+}
+
+if (utils.noRefreshDelay() && utils.noPianoTag() && utils.isPianoArticle()) {
 	utils.removePianoCookie();
 	utils.loadPianoArticle();
 }

@@ -62,21 +62,6 @@ utils.getVideo = function(url) {
 	request.send();
 };
 
-/**
- * Remove possible 10 second refresh delay used by the server to delay initial page loading
- */
-utils.noRefreshDelay = function () {
-	var r = document.head.querySelector('[http-equiv=refresh]');
-	if (r) {
-		var u = r.content.match(/URL='(.*)'/);
-		if (u && u.length === 2) {
-			window.location = document.location.origin + u[1];
-			return false;
-		}
-	}
-	return true;
-}
-
-if (/tv\.sme\.sk\/v(hd)?\/\d+\/.*/.test(document.location) && utils.noRefreshDelay() && utils.isPianoVideo()) {
-	utils.getVideo('http://www.sme.sk/storm/mmdata_get.asp?id=' + utils.articleId() + '&hd1=' + utils.isHD());
+if (/tv\.sme\.sk\/v(hd)?\/\d+\/.*/.test(document.location) && utils.isPianoVideo()) {
+	utils.getVideo('https://www.sme.sk/storm/mmdata_get.asp?id=' + utils.articleId() + '&hd1=' + utils.isHD());
 }

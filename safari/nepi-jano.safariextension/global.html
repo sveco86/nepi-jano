@@ -10,6 +10,7 @@
 						event.target.page.dispatchMessage(name, xhr.responseText);
 					}
 				}
+				xhr.setRequestHeader('User-Agent', '');
 				xhr.send();
 			}
 

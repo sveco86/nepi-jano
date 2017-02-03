@@ -1,9 +1,9 @@
 {
 	"manifest_version": 2,
 	"name": "Nepi Jano!",
-	"version": "2.2",
+	"version": "3.0",
 	"description": "Read paid content on www.sme.sk",
-	"permissions": ["cookies", "webRequest", "*://*.sme.sk/c/*"],
+	"permissions": ["webRequest", "https://s.sme.sk/export/ma/*", "https://www.sme.sk/storm/*"],
 	"content_scripts": [
 		{
 			"js": ["article.js"],
@@ -11,7 +11,11 @@
 		},
 		{
 			"js": ["video.js"],
-			"matches": ["http://tv.sme.sk/v*"]
+			"matches": ["*://tv.sme.sk/v*"]
+		},
+		{
+			"js": ["xml.js"],
+			"matches": ["https://s.sme.sk/export/ma/?ch=*"]
 		}
 	],
 	"homepage_url": "https://github.com/viliampucik/nepi-jano",

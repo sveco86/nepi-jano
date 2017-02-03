@@ -3,60 +3,18 @@
  */
 var utils = {};
 
-/**
- * Return false if viewing unblocked Piano article
- */
-utils.noPianoTag = function() {
-	return /[?&]piano_t=1/.test(document.location.href) === false;
-};
+utils.whitelist = ['#text', 'BR', 'H1', 'H2', 'H3', 'P', 'DIV', 'SPAN', 'STRONG', 'SMALL', 'BLOCKQUOTE', 'UL', 'OL', 'LI', 'A', 'IMG'];
 
 /**
- * Detect blocked Piano article
+ * Remove elements from document using selector
  */
-utils.isPianoArticle = function() {
-	return document.querySelector('.js-piano-teaser-standard');
-};
-
-/**
- * Remove Piano tracking cookie preventing loading of unblocked Piano article
- */
-utils.removePianoCookie = function() {
-	document.cookie = 'pianovisitkey=; expires=Thu, 01 Jan 1970 00:00:01 GMT; path=/; domain=.sme.sk';
-};
-
-/**
- * Load unblocked Piano article
- */
-utils.loadPianoArticle = function() {
-	var uri       = document.location.href;
-	var i         = uri.indexOf('#');
-	var hash      = i === -1 ? ''  : uri.substr(i);
-	var uri       = i === -1 ? uri : uri.substr(0, i);
-	var separator = uri.indexOf('?') !== -1 ? "&" : "?";
-
-	window.location = uri + separator + 'piano_t=1' + hash;
-};
-
-/**
- * Remove possible 10 second refresh delay used by the server to delay initial page loading
- */
-utils.noRefreshDelay = function () {
-	var r = document.head.querySelector('[http-equiv=refresh]');
-	if (r) {
-		var u = r.content.match(/URL='(.*)'/);
-		if (u && u.length === 2) {
-			window.location = document.location.origin + u[1];
-			return false;
-		}
+utils.removeSelector = function(doc, selector) {
+	var elements = doc.querySelectorAll(selector);
+	var i = elements.length;
+	while (i--) {
+		elements[i].parentNode.removeChild(elements[i]);
 	}
-	return true;
-}
-
-/**
- * Detect Piano video
- */
-utils.isPianoVideo = function() {
-	return document.querySelector('.tvpiano');
+	return doc;
 };
 
 /**
@@ -67,6 +25,55 @@ utils.articleId = function() {
 };
 
 /**
+ * Detect Piano article
+ */
+utils.isPianoArticle = function() {
+	return document.querySelector('.js-piano-teaser-standard');
+};
+
+/**
+ * Copy only allowed HTML elements and their styles from the remote article
+ */
+utils.sanitizeContent = function(root, node) {
+	for(var i = 0; i < node.childNodes.length; i++ ) {
+		var child = node.childNodes[i];
+
+		if (utils.whitelist.indexOf(child.nodeName) >= 0) {
+			var element;
+
+			if (child.nodeName == '#text') {
+				element = document.createTextNode(child.textContent);
+			}
+			else {
+				element = document.createElement(child.nodeName);
+				element.className = child.className;
+
+				if (child.nodeName == 'A') {
+					element.href = child.href;
+				}
+				else if (child.nodeName == 'IMG') {
+					element.src = child.src.replace(/^http:/, "https:");
+					element.alt = child.alt;
+				}
+
+				if (child.childNodes.length > 0) {
+					utils.sanitizeContent(element, child);
+				}
+			}
+
+			root.appendChild(element);
+		}
+	}
+}
+
+/**
+ * Detect Piano video
+ */
+utils.isPianoVideo = function() {
+	return document.querySelector('.tvpiano');
+};
+
+/**
  * Get video resolution from URL
  */
 utils.isHD = function() {
@@ -74,19 +81,41 @@ utils.isHD = function() {
 };
 
 if (/\.sme\.sk\/c\/\d+\/.*/.test(document.location)) {
-	if (utils.noRefreshDelay() && utils.noPianoTag() && utils.isPianoArticle()) {
-		utils.removePianoCookie();
-		utils.loadPianoArticle();
+	if (utils.isPianoArticle()) {
+		safari.self.tab.dispatchMessage('doXhr', ['article', 'https://s.sme.sk/export/ma/?c=' + utils.articleId()]);
 	}
 }
 else if (/tv\.sme\.sk\/v(hd)?\/\d+\/.*/.test(document.location)) {
-	if (utils.noRefreshDelay() && utils.isPianoVideo()) {
-		safari.self.tab.dispatchMessage('doXhr', ['video', 'http://www.sme.sk/storm/mmdata_get.asp?id=' + utils.articleId() + '&hd1=' + utils.isHD()]);
+	if (utils.isPianoVideo()) {
+		safari.self.tab.dispatchMessage('doXhr', ['video', 'https://www.sme.sk/storm/mmdata_get.asp?id=' + utils.articleId() + '&hd1=' + utils.isHD()]);
 	}
+}
+else if (/s\.sme\.sk\/export\/ma\/\?ch=\d+.*/.test(document.location)) {
+	window.location = document.querySelector('web_url').textContent;
 }
 
 safari.self.addEventListener('message', function(event) {
-	if (event.name === 'video') {
+	if (event.name === 'article') {
+		var doc = (new DOMParser()).parseFromString(event.message, 'text/html');
+		doc = utils.removeSelector(doc, 'article > br:first-of-type');
+		doc = utils.removeSelector(doc, '.button-bar');
+		if (document.querySelector('.perex')) {
+			doc = utils.removeSelector(doc, '.perex');
+		}
+
+		/* articles */
+		var html;
+		if (html = document.getElementsByTagName('article')[0]) {
+			html.innerHTML = '';
+			if (doc.querySelector('.articlewrap')) {
+				utils.sanitizeContent(html, doc.querySelector('.articlewrap'));
+			}
+			else {
+				utils.sanitizeContent(html, doc.getElementsByTagName('article')[0]);
+			}
+		}
+	}
+	else if (event.name === 'video') {
 		var image    = event.message.match(/<image>(http.*)<\/image>/)[1];
 		var location = event.message.match(/<location>(http.*)<\/location>/)[1];
 

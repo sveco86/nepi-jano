@@ -1,3 +1,6 @@
+:red_circle: Nepi Jano! uz nie je podporovane! SME.sk zablokovalo alternativne pristupy k platenym clankom. :red_circle:
+======
+
 Nepi Jano! 3.0
 ======
 

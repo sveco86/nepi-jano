@@ -3,7 +3,7 @@
  */
 var utils = {};
 
-utils.whitelist = ['#text', 'BR', 'H1', 'H2', 'H3', 'P', 'DIV', 'SPAN', 'STRONG', 'SMALL', 'BLOCKQUOTE', 'UL', 'OL', 'LI', 'A', 'IMG'];
+utils.whitelist = ['#text', 'BR', 'H1', 'H2', 'H3', 'P', 'DIV', 'SPAN', 'STRONG', 'SMALL', 'BLOCKQUOTE', 'UL', 'OL', 'LI', 'A', 'IMG', 'BUTTON'];
 
 /**
  * Remove elements from document using selector
@@ -97,6 +97,6 @@ utils.getArticle = function(url) {
 	request.send();
 };
 
-if (/\.sme\.sk\/c\/\d+\/.*/.test(document.location) && utils.isPianoArticle()) {
-	utils.getArticle('https://s.sme.sk/export/ma/?c=' + utils.articleId());
+	if (/\.sme\.sk\/c\/\d+\/.*/.test(document.location) && utils.isPianoArticle()) {
+	utils.getArticle('https://artemis.sme.sk/api/v2/article/' + utils.articleId() + '?mid=16&fullcont=1&noAdverts=0&nightmode=0');
 }

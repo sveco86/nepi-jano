@@ -12,5 +12,5 @@ chrome.webRequest.onBeforeSendHeaders.addListener(function(details) {
 		requestHeaders : details.requestHeaders
 	};
 }, {
-	urls : ["https://s.sme.sk/export/ma/*"]
+	urls : ["https://artemis.sme.sk/api/v2/article/*"]
 }, ["blocking", "requestHeaders"]);

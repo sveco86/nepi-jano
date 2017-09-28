@@ -79,7 +79,7 @@ GPL a MIT
 * [Miroslav Magda](http://ejci.net)
 
 ##### Prispievatelia
-* [Sveco86] (https://github.com/sveco86)
+* [sveco86](https://github.com/sveco86)
 * [Jakub Zitny](https://github.com/jakubzitny)
 * [Daniel Husar](https://github.com/danielhusar)
 * Jozef Giusseppe

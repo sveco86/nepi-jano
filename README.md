@@ -1,31 +1,30 @@
-:red_circle: Nepi Jano! uz nie je podporovane! SME.sk zablokovalo alternativne pristupy k platenym clankom. :red_circle:
+:star: Nepi Jano! opat funkcne! :) :star:
 ======
 
-Nepi Jano! 3.0
+Nepi Jano! 4.0
 ======
 
 Nepi Jano! je doplnok pre webove prehliadace Google Chrome a Mozilla Firefox umoznujuci bezplatne citanie platenych alias Piano clankov na [www.sme.sk](http://www.sme.sk). Staci si dane rozsirenie jednoducho nainstalovat z oficialnych stranok danych prehliadacov. Nasledne po otvoreni akehokolvek Piano clanku sa automaticky, v priebehu par sekund nacita jeho plna verzia.
+Verzia 4.0 vychadza z repozitaru https://github.com/viliampucik/nepi-jano autora Viliam Pucik.
 
 ## Instalacia
 
 ### Google Chrome
 
-* [Rozsirenie pre Chrome sa instaluje z oficialnej stranky Chrome Store](https://chrome.google.com/webstore/detail/nepi-jano/dmiebaglkdeebobffhbomapifjjjjakj).
-* Pripadne sa da nainstalovat manualne [stiahnutim z tejto stranky](https://github.com/viliampucik/nepi-jano/raw/master/releases/nepi-jano-3.0.chrome.crx),
+* Nainstalujte manualne [stiahnutim z tejto stranky](https://github.com/sveco86/nepi-jano/blob/master/releases/nepi-jano-4.0.chrome.crx),
 * otvorenim zalozky doplnkov kliknutim na menu *-> Nastavenia -> Rozsirenia*
 * a naslednym pretiahnutim stiahnuteho *.crx* suboru do spominanej zalozky.
 
 ### Mozilla Firefox
 
-* [Doplnok pre Firefox sa instaluje z oficialnej stranky Mozilla doplnkov](https://addons.mozilla.org/sk/firefox/addon/nepi-jano/).
-
-## Ako funguje spristupnovanie Piano clankov
-
-Piano clanky su spristupnovane sposobom, ktory bol podrobnejsie popisany na blogu povodneho autorom Miroslav Magdu: [Piano and SME.sk](http://blog.ejci.net/2013/04/21/piano-and-sme-sk/) a [Paid content for free on (Slovak) news portals](http://blog.ejci.net/2013/05/19/paid-content-for-free-on-slovak-news-portals/).
-
-Terajsi doplnok je pokracovanim jeho povodnej prace z https://github.com/ejci/nepi-jano.
+* Zatial nedostupne
 
 ## Zoznam zmien
+
+#### 4.0
+
+* Obnovena funkcionalita nacitavania Piano clankov
+* Podpora len pre prehliadac Chrome
 
 #### 3.0
 
@@ -75,13 +74,12 @@ GPL a MIT
 
 ## O autoroch
 
-##### Povodny autor
+##### Autori
+* [Viliam Pucik](https://github.com/viliampucik)
 * [Miroslav Magda](http://ejci.net)
 
-##### Terajsi autor
-* [Viliam Pucik](https://github.com/viliampucik)
-
 ##### Prispievatelia
+* [Sveco86] (https://github.com/sveco86)
 * [Jakub Zitny](https://github.com/jakubzitny)
 * [Daniel Husar](https://github.com/danielhusar)
 * Jozef Giusseppe
